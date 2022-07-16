@@ -1,6 +1,6 @@
 <template>
   <div class="row cards">
-    <div class="col-sm-4 col-md-2 g-2" v-for="(item, index) in inputCardsArray" :key="index">
+    <div class="col-4 col-md-2 g-3" v-for="(item, index) in cardArray" :key="index">
       <div class="card h-100 back" ref="card" @click="flipCard(item, index)">
         <div class="card-body d-flex justify-content-center align-items-center" >
           <!-- <div class="title">{{ item.title }}</div> -->
@@ -23,6 +23,7 @@ export default {
   },
   methods: {
     flipCard(item, index) {
+      this.$emit('reduceAward', item);
       const cards = document.querySelectorAll('.card');
       Array.from(cards).map((card, key) => {
         if (key === index) {

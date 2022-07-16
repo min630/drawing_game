@@ -8,8 +8,18 @@ const routes = [
     component: Home,
   },
   {
-    path: '/login',
-    component: () => import('../views/Login.vue'),
+    path: '/awards',
+    // component: () => import('../views/CheckAwards.vue'),
+    children: [
+      {
+        path: 'default-awards',
+        component: () => import('../views/DefaultAwards.vue'),
+      },
+      {
+        path: 'custom-awards',
+        component: () => import('../views/DefaultAwards.vue'),
+      },
+    ],
   },
   {
     path: '/admin',

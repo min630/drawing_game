@@ -1,0 +1,162 @@
+<template>
+  <div class="container-fluid bg-info min-vh-100">
+    <div class="row min-vh-100">
+      <div class="col-sm-3 px-3 border-dark border-end">
+        <template v-if="!isConfirmed">
+          <h3 class="my-2">獎項及張數：共 {{ totalNumber }} 張</h3>
+          <div class="inputList">
+          <ul class="list-group">
+            <li
+              class="
+                list-group-item
+                position-relative
+                d-flex
+                justify-content-between
+                align-items-center
+              "
+              v-for="(award, index) in awardArray"
+              :key="index"
+            >
+              <span>{{ award.title }}</span>
+              <span>{{ award.number }}張</span>
+            </li>
+          </ul>
+          <button
+            type="button"
+            class="btn btn-primary mt-2 me-2"
+            @click="getAwardsArray"
+          >
+            輸出籤紙
+          </button>
+          </div>
+        </template>
+        <AwardsCountdown v-else
+          :award-array="awardArray"
+          :total-number="totalNumber"
+          @finish="clearCards"
+          >
+        </AwardsCountdown>
+      </div>
+      <div class="col-sm-9 px-3">
+        <Awards :awards="awardArray" v-if="!isConfirmed"></Awards>
+        <Cards :card-array="cardArray" @reduce-award="getRemainAwards" v-else></Cards>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import Luffy from '@/assets/onepiece01_luffy.png';
+import Zoro from '@/assets/onepiece02_zoro.png';
+import Sanji from '@/assets/onepiece05_sanji.png';
+import Chopper from '@/assets/onepiece06_chopper.png';
+import None from '@/assets/syougatsu_chara_hatsuhinode.png';
+import Awards from '@/components/Awards.vue';
+import Cards from '@/components/Cards.vue';
+import AwardsCountdown from '../components/AwardsCountdown.vue';
+
+const dummyData = [
+  {
+    title: 'A賞 魯夫',
+    number: 2,
+    imageUrl: Luffy,
+    content: '獎品描述：(大小、材質...)',
+  },
+  {
+    title: 'B賞 索隆',
+    number: 2,
+    imageUrl: Zoro,
+    content: '獎品描述：(大小、材質...)',
+  },
+  {
+    title: 'C賞 香吉',
+    number: 2,
+    imageUrl: Sanji,
+    content: '獎品描述：(大小、材質...)',
+  },
+  {
+    title: 'D賞 喬巴',
+    number: 2,
+    imageUrl: Chopper,
+    content: '獎品描述：(大小、材質...)',
+  },
+  {
+    title: 'E賞 玻璃杯',
+    number: 20,
+    imageUrl: None,
+    content: '獎品描述：(大小、材質...)',
+  },
+  {
+    title: 'F賞 色紙',
+    number: 24,
+    imageUrl: None,
+    content: '獎品描述：(大小、材質...)',
+  },
+  {
+    title: 'G賞 資料夾',
+    number: 28,
+    imageUrl: None,
+    content: '獎品描述：(大小、材質...)',
+  },
+];
+export default {
+  components: {
+    Awards,
+    Cards,
+    AwardsCountdown,
+  },
+  data() {
+    return {
+      awardArray: [],
+      cardArray: [],
+      totalNumber: 0,
+      isConfirmed: false,
+    };
+  },
+  methods: {
+    getAwardsArray() {
+      this.isConfirmed = true;
+      this.awardArray.forEach((item) => {
+        const arr = Array(item.number).fill(item);
+        this.cardArray = this.cardArray.concat(arr);
+      });
+      this.cardArray = this.getRandomCardsArray(this.cardArray);
+    },
+    getRandomCardsArray(newArray) {
+      const inputArray = newArray;
+      for (let index = inputArray.length - 1; index > 0; index -= 1) {
+        const randomIndex = Math.floor(Math.random() * (index + 1));
+        [inputArray[index], inputArray[randomIndex]] = [
+          inputArray[randomIndex],
+          inputArray[index],
+        ];
+      }
+      return inputArray;
+    },
+    getRemainAwards(item) {
+      this.awardArray.forEach((award) => {
+        if (award.title === item.title) {
+          award.number -= 1;
+        }
+      });
+    },
+    clearCards() {
+      this.awardArray = JSON.parse(JSON.stringify(dummyData));
+      this.cardArray = [];
+      this.isConfirmed = false;
+    },
+    getTotalNumber() {
+      let count = 0;
+      this.awardArray.forEach((award) => {
+        count += award.number;
+      });
+      return count;
+    },
+
+  },
+  created() {
+    this.awardArray = JSON.parse(JSON.stringify(dummyData));
+    this.totalNumber = this.getTotalNumber();
+  },
+};
+</script>
