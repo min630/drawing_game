@@ -13,7 +13,7 @@
     <h1 class="mb-5">請選擇籤組模式</h1>
     <div class="row gx-5">
       <div class="col mx-5">
-        <router-link to="./">
+        <router-link to="./kuji">
         <div
           class="
             rounded-circle
@@ -59,6 +59,7 @@ export default {};
       rgba(255, 255, 255, 0.5)
     ),
     url("../assets/lucky_cat.jpg");
+  z-index: -1;
 }
 .rounded-circle:hover {
   opacity: 0.6;

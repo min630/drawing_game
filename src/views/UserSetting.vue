@@ -1,5 +1,5 @@
 <template>
-
+  <div>
     <h3 class="my-2">獎項及張數：共 {{ totalNumber }} 張</h3>
     <div class="inputList">
       <ul class="list-group">
@@ -43,6 +43,7 @@
         結束抽籤
       </button>
     </div>
+  </div>
 </template>
 
 <script>
@@ -97,6 +98,7 @@ export default {
       isConfirmed: false,
     };
   },
+  emits: ['emitCards'],
   methods: {
     getAwardsArray() {
       this.isConfirmed = true;
@@ -105,7 +107,7 @@ export default {
         this.cardArray = this.cardArray.concat(arr);
       });
       this.cardArray = this.getRandomCardsArray(this.cardArray);
-      this.$emit('emitCardArray', this.cardArray);
+      this.$emit('emitCards', this.cardArray);
     },
     getRandomCardsArray(newArray) {
       const inputArray = newArray;
