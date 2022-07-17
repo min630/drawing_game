@@ -13,8 +13,7 @@
     <h1 class="mb-5">請選擇籤組模式</h1>
     <div class="row gx-5">
       <div class="col mx-5">
-        <router-link to="/awards/default-awards">
-        <div
+        <button
           class="
             rounded-circle
             bg-danger
@@ -23,14 +22,13 @@
             align-items-center
           "
           style="width: 200px; height: 200px"
+          @click="toPage('default-awards')"
         >
           <h3 class="fw-bold">預設籤組</h3>
-        </div>
-        </router-link>
+        </button>
       </div>
       <div class="col mx-5">
-        <router-link to="/awards/custom-awards">
-        <div
+        <button
           class="
             rounded-circle
             bg-primary
@@ -39,17 +37,32 @@
             align-items-center
           "
           style="width: 200px; height: 200px"
+          @click="toPage('default-awards')"
         >
           <h3 class="fw-bold">自訂籤組</h3>
-        </div>
-        </router-link>
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import popAudio from '../assets/pop.mp3';
+
+export default {
+  methods: {
+    toPage(page) {
+      this.playAudio();
+      setTimeout(() => {
+        this.$router.push(`/${page}`);
+      }, 600);
+    },
+    playAudio() {
+      const audio = new Audio(popAudio);
+      audio.play();
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -58,7 +71,7 @@ export default {};
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
-    url("../assets/lucky_cat.jpg");
+    url("../assets/bg-home.png");
   background-size: cover;
   z-index: -1;
 }

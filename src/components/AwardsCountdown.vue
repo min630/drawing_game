@@ -1,5 +1,5 @@
 <template>
-  <h4 class="my-2">剩餘獎項及張數：{{ remainingNumber }} / {{ totalNumber }} 張</h4>
+  <h4 class="my-2">剩餘獎項及張數：{{ remainingNumber }} / {{ originNumber }} 張</h4>
   <div class="inputList">
     <ul class="list-group">
       <li
@@ -20,7 +20,7 @@
     <button
       type="button"
       class="btn btn-primary mt-2 me-2"
-      @click="$emit('finish')"
+      @click="finishPlay"
     >
       結束抽籤
     </button>
@@ -31,11 +31,17 @@
 export default {
   props: ['awardArray', 'totalNumber'],
   emits: ['finish'],
-  // data() {
-  //   return {
-  //     remainingNumber: 0,
-  //   };
-  // },
+  data() {
+    return {
+      originNumber: 0,
+    };
+  },
+  methods: {
+    finishPlay() {
+      this.$emit('finish');
+      localStorage.clear();
+    },
+  },
   computed: {
     remainingNumber() {
       let count = 0;
@@ -44,6 +50,9 @@ export default {
       });
       return count;
     },
+  },
+  created() {
+    this.originNumber = this.totalNumber;
   },
 };
 </script>

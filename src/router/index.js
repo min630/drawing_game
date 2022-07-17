@@ -8,32 +8,19 @@ const routes = [
     component: Home,
   },
   {
-    path: '/awards',
-    // component: () => import('../views/CheckAwards.vue'),
-    children: [
-      {
-        path: 'default-awards',
-        component: () => import('../views/DefaultAwards.vue'),
-      },
-      {
-        path: 'custom-awards',
-        component: () => import('../views/CustomAwards.vue'),
-      },
-    ],
+    path: '/default-awards',
+    component: () => import('../views/DefaultAwards.vue'),
   },
   {
-    path: '/admin',
-    component: () => import('../views/AdminPage.vue'),
-  },
-  {
-    path: '/kuji',
-    component: () => import('../views/KujiPage.vue'),
+    path: '/custom-awards',
+    component: () => import('../views/CustomAwards.vue'),
   },
 ];
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
+  linkActiveClass: 'active',
 });
 
 export default router;

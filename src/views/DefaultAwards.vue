@@ -1,7 +1,8 @@
 <template>
+<Navbar></Navbar>
   <div class="container-fluid bg-info min-vh-100">
     <div class="row min-vh-100">
-      <!-- colimn left -->
+      <!-- column left -->
       <div class="col-sm-3 px-3 border-dark border-end">
         <template v-if="!isConfirmed">
           <h3 class="my-2">獎項及張數：共 {{ totalNumber }} 張</h3>
@@ -25,7 +26,7 @@
           <button
             type="button"
             class="btn btn-primary mt-2 me-2"
-            @click="getAwardsArray"
+            @click="getCardArray"
           >
             輸出籤紙
           </button>
@@ -45,6 +46,7 @@
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -52,10 +54,11 @@ import Luffy from '@/assets/onepiece01_luffy.png';
 import Zoro from '@/assets/onepiece02_zoro.png';
 import Sanji from '@/assets/onepiece05_sanji.png';
 import Chopper from '@/assets/onepiece06_chopper.png';
-// import None from '@/assets/syougatsu_chara_hatsuhinode.png';
 import Awards from '@/components/Awards.vue';
 import Cards from '@/components/Cards.vue';
-import AwardsCountdown from '../components/AwardsCountdown.vue';
+import AwardsCountdown from '@/components/AwardsCountdown.vue';
+import Navbar from '@/components/Navbar.vue';
+import { getRandomCardsArray, getTotalNumber, getRemainAwards } from '@/methods/mixins';
 
 const dummyData = [
   {
@@ -103,6 +106,7 @@ const dummyData = [
 ];
 export default {
   components: {
+    Navbar,
     Awards,
     Cards,
     AwardsCountdown,
@@ -111,12 +115,13 @@ export default {
     return {
       awardArray: [],
       cardArray: [],
+      getArray: [],
       totalNumber: 0,
       isConfirmed: false,
     };
   },
   methods: {
-    getAwardsArray() {
+    getCardArray() {
       this.isConfirmed = true;
       this.awardArray.forEach((item) => {
         const arr = Array(item.number).fill(item);
@@ -124,37 +129,15 @@ export default {
       });
       this.cardArray = this.getRandomCardsArray(this.cardArray);
     },
-    getRandomCardsArray(newArray) {
-      const inputArray = newArray;
-      for (let index = inputArray.length - 1; index > 0; index -= 1) {
-        const randomIndex = Math.floor(Math.random() * (index + 1));
-        [inputArray[index], inputArray[randomIndex]] = [
-          inputArray[randomIndex],
-          inputArray[index],
-        ];
-      }
-      return inputArray;
-    },
-    getRemainAwards(item) {
-      this.awardArray.forEach((award) => {
-        if (award.title === item.title) {
-          award.number -= 1;
-        }
-      });
-    },
     clearCards() {
       this.awardArray = JSON.parse(JSON.stringify(dummyData));
       this.cardArray = [];
       this.isConfirmed = false;
+      this.getArray = [];
     },
-    getTotalNumber() {
-      let count = 0;
-      this.awardArray.forEach((award) => {
-        count += award.number;
-      });
-      return count;
-    },
-
+    getRandomCardsArray,
+    getRemainAwards,
+    getTotalNumber,
   },
   created() {
     this.awardArray = JSON.parse(JSON.stringify(dummyData));
