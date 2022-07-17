@@ -17,7 +17,7 @@ const routes = [
       },
       {
         path: 'custom-awards',
-        component: () => import('../views/DefaultAwards.vue'),
+        component: () => import('../views/CustomAwards.vue'),
       },
     ],
   },

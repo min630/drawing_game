@@ -1,6 +1,7 @@
 <template>
   <div class="container-fluid bg-info min-vh-100">
     <div class="row min-vh-100">
+      <!-- colimn left -->
       <div class="col-sm-3 px-3 border-dark border-end">
         <template v-if="!isConfirmed">
           <h3 class="my-2">獎項及張數：共 {{ totalNumber }} 張</h3>
@@ -37,6 +38,7 @@
           >
         </AwardsCountdown>
       </div>
+      <!-- column right -->
       <div class="col-sm-9 px-3">
         <Awards :awards="awardArray" v-if="!isConfirmed"></Awards>
         <Cards :card-array="cardArray" @reduce-award="getRemainAwards" v-else></Cards>
@@ -50,7 +52,7 @@ import Luffy from '@/assets/onepiece01_luffy.png';
 import Zoro from '@/assets/onepiece02_zoro.png';
 import Sanji from '@/assets/onepiece05_sanji.png';
 import Chopper from '@/assets/onepiece06_chopper.png';
-import None from '@/assets/syougatsu_chara_hatsuhinode.png';
+// import None from '@/assets/syougatsu_chara_hatsuhinode.png';
 import Awards from '@/components/Awards.vue';
 import Cards from '@/components/Cards.vue';
 import AwardsCountdown from '../components/AwardsCountdown.vue';
@@ -83,19 +85,19 @@ const dummyData = [
   {
     title: 'E賞 玻璃杯',
     number: 20,
-    imageUrl: None,
+    imageUrl: 'https://1.bp.blogspot.com/-KDp9cwp6ZpI/VcMmJ7DzycI/AAAAAAAAwds/d58TYNwsOhE/s800/edo_kiriko.png',
     content: '獎品描述：(大小、材質...)',
   },
   {
     title: 'F賞 色紙',
     number: 24,
-    imageUrl: None,
+    imageUrl: 'https://1.bp.blogspot.com/-sb6_0EndDj4/XexrdNZlw1I/AAAAAAABWpM/m8dTVCD9jx4h3RzER6acvUFx3evYCqsEACNcBGAsYHQ/s1600/train_arashiyama_torokko_kouyou.png',
     content: '獎品描述：(大小、材質...)',
   },
   {
     title: 'G賞 資料夾',
     number: 28,
-    imageUrl: None,
+    imageUrl: 'https://2.bp.blogspot.com/-77sjTmJfZpk/UWJVw8Nw5sI/AAAAAAAAPa8/D6KJwXRLF9Y/s400/season_11_tate.jpg',
     content: '獎品描述：(大小、材質...)',
   },
 ];
