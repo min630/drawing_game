@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import flipAudio from '@/assets/flip.mp3';
+import flipAudio from '@/assets/audio/flip.mp3';
 import ShowAward from './ShowAward.vue';
 
 export default {
@@ -29,6 +29,7 @@ export default {
     return {
       inputCardsArray: [],
       pickedCard: {},
+      audio: null,
     };
   },
   emits: ['reduceAward'],
@@ -51,14 +52,16 @@ export default {
       });
     },
     playFlipAudio() {
-      const audio = new Audio(flipAudio);
-      audio.play();
+      this.audio.play();
     },
   },
   watch: {
     cardArray() {
       this.inputCardsArray = this.cardArray;
     },
+  },
+  created() {
+    this.audio = new Audio(flipAudio);
   },
 };
 </script>
@@ -69,7 +72,7 @@ export default {
   height: 80px;
 }
 .back {
-  background: url('../assets/card_bg.png');
+  background: url('../assets/image/bg-card.png');
   background-size: cover;
 }
 .front {

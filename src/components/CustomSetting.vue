@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import imgPlaceholder from '../assets/imgPlaceholder.jpg';
+import imgPlaceholder from '../assets/image/imgPlaceholder.jpg';
 
 export default {
   data() {
@@ -49,15 +49,16 @@ export default {
         title: '',
         number: 0,
         imageUrl: '',
+        alert: null,
       },
     };
   },
   methods: {
     addItem() {
       if (!this.tempAward.title) {
-        window.alert('請輸入獎項名稱');
+        this.alert('請輸入獎項名稱');
       } else if (this.tempAward.number === 0) {
-        window.alert('請輸入大於 0 的張數');
+        this.alert('請輸入大於 0 的張數');
       } else {
         const addedItem = { ...this.tempAward };
         if (!addedItem.imageUrl) {

@@ -50,10 +50,10 @@
 </template>
 
 <script>
-import Luffy from '@/assets/onepiece01_luffy.png';
-import Zoro from '@/assets/onepiece02_zoro.png';
-import Sanji from '@/assets/onepiece05_sanji.png';
-import Chopper from '@/assets/onepiece06_chopper.png';
+import Luffy from '@/assets/image/onepiece01_luffy.png';
+import Zoro from '@/assets/image/onepiece02_zoro.png';
+import Sanji from '@/assets/image/onepiece05_sanji.png';
+import Chopper from '@/assets/image/onepiece06_chopper.png';
 import Awards from '@/components/Awards.vue';
 import Cards from '@/components/Cards.vue';
 import AwardsCountdown from '@/components/AwardsCountdown.vue';
