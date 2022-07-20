@@ -35,10 +35,8 @@ export default {
   emits: ['reduceAward'],
   methods: {
     flipCard(item, index) {
-      this.playFlipAudio();
-      this.$emit('reduceAward', item);
-      this.pickedCard = item;
-      this.$refs.show.showAward();
+      if (item.isFlipped) return;
+
       const cards = document.querySelectorAll('.card');
       Array.from(cards).map((card, key) => {
         if (key === index) {
@@ -50,6 +48,11 @@ export default {
         }
         return card;
       });
+      item.isFlipped = true;
+      this.playFlipAudio();
+      this.$emit('reduceAward', item);
+      this.pickedCard = item;
+      this.$refs.show.showAward();
     },
     playFlipAudio() {
       this.audio.play();

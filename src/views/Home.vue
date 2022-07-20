@@ -12,7 +12,9 @@
   >
     <h1 class="mb-5">請選擇籤組模式</h1>
     <div class="row gx-5">
-      <div class="col mx-5">
+      <div class="col mx-5 my-2 d-flex
+            justify-content-center
+            align-items-center">
         <router-link to="/default-awards">
         <div
           class="
@@ -29,7 +31,9 @@
         </div>
         </router-link>
       </div>
-      <div class="col mx-5">
+      <div class="col mx-5 my-2 d-flex
+            justify-content-center
+            align-items-center">
         <router-link to="/custom-awards">
         <div
           class="

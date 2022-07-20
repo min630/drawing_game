@@ -33,7 +33,7 @@
             <router-link to="/custom-awards" class="nav-link">自訂簽組</router-link>
           </li>
           <li class="nav-item ">
-            <button class="h-100 ms-4 btn btn-outline-info"
+            <button class="h-100 btn btn-outline-info"
               @click="showModal">
             已抽到的獎項</button>
           </li>

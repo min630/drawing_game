@@ -33,6 +33,16 @@
         v-model="tempAward.imageUrl"
       />
     </div>
+    <div class="mb-2">
+    <label for="content" class="form-label">獎項描述</label>
+      <input
+        type="text"
+        class="form-control"
+        id="content"
+        aria-describedby="example"
+        v-model="tempAward.content"
+      />
+    </div>
     <button type="submit" class="btn btn-primary" @click.prevent="addItem">
       新增
     </button>
@@ -49,8 +59,9 @@ export default {
         title: '',
         number: 0,
         imageUrl: '',
-        alert: null,
+        content: '',
       },
+      alert: null,
     };
   },
   methods: {

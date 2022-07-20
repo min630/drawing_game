@@ -8,7 +8,7 @@
           {{ award.title }}
         </p>
         <p class="card-content">
-          {{ award.content }}
+          獎項描述：{{ award.content }}
         </p>
       </div>
     </div>
