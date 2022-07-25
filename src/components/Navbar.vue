@@ -63,7 +63,7 @@ export default {
     },
     showModal() {
       this.$refs.awardModal.openModal();
-      this.awards = JSON.parse(localStorage.getItem('awards'));
+      this.awards = JSON.parse(localStorage.getItem('awards')) || [];
     },
   },
 };

@@ -61,15 +61,14 @@ export default {
         imageUrl: '',
         content: '',
       },
-      alert: null,
     };
   },
   methods: {
     addItem() {
       if (!this.tempAward.title) {
-        this.alert('請輸入獎項名稱');
+        alert('請輸入獎項名稱');
       } else if (this.tempAward.number === 0) {
-        this.alert('請輸入大於 0 的張數');
+        alert('請輸入大於 0 的張數');
       } else {
         const addedItem = { ...this.tempAward };
         if (!addedItem.imageUrl) {

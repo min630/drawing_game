@@ -38,8 +38,8 @@ export default {
   },
   methods: {
     finishPlay() {
-      this.$emit('finish');
       localStorage.clear();
+      this.$emit('finish');
     },
   },
   computed: {
